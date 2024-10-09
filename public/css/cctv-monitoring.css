@@ -72,7 +72,7 @@ button {
     transform: translateY(-3px);
 }
  */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+ 
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
  body {
@@ -146,20 +146,13 @@ button {
      font-weight: 600;
  }
 
- /* .text-center button {
-     background-color: #5f6861;
-     padding: 12px 40px;
-     border-radius: 50px;
-     color: white;
-     transition: transform 0.3s ease;
- } */
 
  .text-center button:hover {
-     background-color: #eadb3e;
+     background-color: #a3f50b;
      transform: translateY(-3px);
  }
 
- .btn-result {
+ .btn-primary {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
@@ -170,6 +163,6 @@ button {
     text-decoration: none;
 }
 
-.btn-result:hover {
+.btn-primary:hover {
     background-color: #0056b3;
 }

@@ -139,7 +139,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <button class="btn-result btn-primary" onclick="window.location.href='{{ route('result-page') }}'">Result Page</button>
+        <button class="btn btn-primary" onclick="window.location.href='{{ route('result-page') }}'">Result Page</button>
     </div>
 
 

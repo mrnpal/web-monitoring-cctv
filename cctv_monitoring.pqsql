@@ -1,0 +1,601 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.13 (Homebrew)
+-- Dumped by pg_dump version 14.13 (Homebrew)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: cache; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.cache (
+    key character varying(255) NOT NULL,
+    value text NOT NULL,
+    expiration integer NOT NULL
+);
+
+
+ALTER TABLE public.cache OWNER TO mrnpal;
+
+--
+-- Name: cache_locks; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.cache_locks (
+    key character varying(255) NOT NULL,
+    owner character varying(255) NOT NULL,
+    expiration integer NOT NULL
+);
+
+
+ALTER TABLE public.cache_locks OWNER TO mrnpal;
+
+--
+-- Name: failed_jobs; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.failed_jobs (
+    id bigint NOT NULL,
+    uuid character varying(255) NOT NULL,
+    connection text NOT NULL,
+    queue text NOT NULL,
+    payload text NOT NULL,
+    exception text NOT NULL,
+    failed_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE public.failed_jobs OWNER TO mrnpal;
+
+--
+-- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: mrnpal
+--
+
+CREATE SEQUENCE public.failed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.failed_jobs_id_seq OWNER TO mrnpal;
+
+--
+-- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mrnpal
+--
+
+ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
+
+
+--
+-- Name: job_batches; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.job_batches (
+    id character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    total_jobs integer NOT NULL,
+    pending_jobs integer NOT NULL,
+    failed_jobs integer NOT NULL,
+    failed_job_ids text NOT NULL,
+    options text,
+    cancelled_at integer,
+    created_at integer NOT NULL,
+    finished_at integer
+);
+
+
+ALTER TABLE public.job_batches OWNER TO mrnpal;
+
+--
+-- Name: jobs; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.jobs (
+    id bigint NOT NULL,
+    queue character varying(255) NOT NULL,
+    payload text NOT NULL,
+    attempts smallint NOT NULL,
+    reserved_at integer,
+    available_at integer NOT NULL,
+    created_at integer NOT NULL
+);
+
+
+ALTER TABLE public.jobs OWNER TO mrnpal;
+
+--
+-- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: mrnpal
+--
+
+CREATE SEQUENCE public.jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.jobs_id_seq OWNER TO mrnpal;
+
+--
+-- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mrnpal
+--
+
+ALTER SEQUENCE public.jobs_id_seq OWNED BY public.jobs.id;
+
+
+--
+-- Name: migrations; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE public.migrations OWNER TO mrnpal;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: mrnpal
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.migrations_id_seq OWNER TO mrnpal;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mrnpal
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
+-- Name: password_reset_tokens; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.password_reset_tokens (
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.password_reset_tokens OWNER TO mrnpal;
+
+--
+-- Name: ping_logs; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.ping_logs (
+    id bigint NOT NULL,
+    ip_address character varying(255) NOT NULL,
+    status character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    port integer,
+    port_status character varying(255)
+);
+
+
+ALTER TABLE public.ping_logs OWNER TO mrnpal;
+
+--
+-- Name: ping_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: mrnpal
+--
+
+CREATE SEQUENCE public.ping_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ping_logs_id_seq OWNER TO mrnpal;
+
+--
+-- Name: ping_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mrnpal
+--
+
+ALTER SEQUENCE public.ping_logs_id_seq OWNED BY public.ping_logs.id;
+
+
+--
+-- Name: sessions; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.sessions (
+    id character varying(255) NOT NULL,
+    user_id bigint,
+    ip_address character varying(45),
+    user_agent text,
+    payload text NOT NULL,
+    last_activity integer NOT NULL
+);
+
+
+ALTER TABLE public.sessions OWNER TO mrnpal;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: mrnpal
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.users OWNER TO mrnpal;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: mrnpal
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO mrnpal;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mrnpal
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
+
+
+--
+-- Name: jobs id; Type: DEFAULT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.jobs ALTER COLUMN id SET DEFAULT nextval('public.jobs_id_seq'::regclass);
+
+
+--
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- Name: ping_logs id; Type: DEFAULT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.ping_logs ALTER COLUMN id SET DEFAULT nextval('public.ping_logs_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: cache; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.cache (key, value, expiration) FROM stdin;
+\.
+
+
+--
+-- Data for Name: cache_locks; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.cache_locks (key, owner, expiration) FROM stdin;
+\.
+
+
+--
+-- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: job_batches; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.job_batches (id, name, total_jobs, pending_jobs, failed_jobs, failed_job_ids, options, cancelled_at, created_at, finished_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: jobs; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.jobs (id, queue, payload, attempts, reserved_at, available_at, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.migrations (id, migration, batch) FROM stdin;
+1	0001_01_01_000000_create_users_table	1
+2	0001_01_01_000001_create_cache_table	1
+3	0001_01_01_000002_create_jobs_table	1
+4	2024_10_02_130021_create_ping_logs_table	1
+5	2024_10_04_101248_add_port_to_ping_logs_table	2
+6	2024_10_05_230700_add_port_status_to_ping_logs_table	3
+\.
+
+
+--
+-- Data for Name: password_reset_tokens; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.password_reset_tokens (email, token, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: ping_logs; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.ping_logs (id, ip_address, status, created_at, updated_at, port, port_status) FROM stdin;
+88	192.121.12.11	timeout	2024-10-05 23:22:15	2024-10-05 23:22:15	\N	\N
+89	127.0.0.1	timeout	2024-10-06 19:21:24	2024-10-06 19:21:24	22	timeout
+90	192.168.1.14	timeout	2024-10-06 19:35:38	2024-10-06 19:35:38	\N	\N
+91	127.0.0.1	timeout	2024-10-06 22:12:42	2024-10-06 22:12:42	334	timeout
+92	192.168.1.2	timeout	2024-10-06 22:37:51	2024-10-06 22:37:51	\N	\N
+93	192.168.1.14	timeout	2024-10-07 08:15:22	2024-10-07 08:15:22	\N	\N
+94	127.0.0.1	timeout	2024-10-07 08:17:57	2024-10-07 08:17:57	111	timeout
+95	10.7.197.69	timeout	2024-10-07 08:20:38	2024-10-07 08:20:38	\N	\N
+96	192.121.12.11	timeout	2024-10-07 08:29:07	2024-10-07 08:29:07	\N	\N
+97	192.121.12.11	timeout	2024-10-07 08:31:12	2024-10-07 08:31:12	\N	\N
+98	192.168.1.14	timeout	2024-10-07 08:57:21	2024-10-07 08:57:21	\N	\N
+99	192.121.12.11	timeout	2024-10-07 09:43:21	2024-10-07 09:43:21	\N	\N
+100	192.121.12.11	timeout	2024-10-07 09:43:32	2024-10-07 09:43:32	\N	\N
+101	127.0.0.1	timeout	2024-10-07 09:43:32	2024-10-07 09:43:32	22	timeout
+102	127.0.0.1	timeout	2024-10-07 09:44:31	2024-10-07 09:44:31	22	timeout
+103	192.121.12.11	timeout	2024-10-07 14:07:33	2024-10-07 14:07:33	\N	\N
+104	192.121.12.11	timeout	2024-10-07 14:20:26	2024-10-07 14:20:26	\N	\N
+105	127.0.0.1	timeout	2024-10-07 14:20:32	2024-10-07 14:20:32	22	timeout
+106	127.0.0.1	timeout	2024-10-07 14:20:39	2024-10-07 14:20:39	232	timeout
+107	127.0.0.1	timeout	2024-10-07 14:20:43	2024-10-07 14:20:43	322322	timeout
+108	127.0.0.1	timeout	2024-10-07 14:20:49	2024-10-07 14:20:49	1	timeout
+109	127.0.0.1	timeout	2024-10-07 14:26:05	2024-10-07 14:26:05	21	timeout
+110	127.0.0.1	timeout	2024-10-07 14:26:10	2024-10-07 14:26:10	32	timeout
+111	127.0.0.1	timeout	2024-10-07 14:26:14	2024-10-07 14:26:14	4444	timeout
+112	127.0.0.1	timeout	2024-10-07 14:26:19	2024-10-07 14:26:19	432	timeout
+113	127.0.0.1	timeout	2024-10-07 14:26:23	2024-10-07 14:26:23	233	timeout
+114	127.0.0.1	timeout	2024-10-07 14:26:27	2024-10-07 14:26:27	345	timeout
+115	127.0.0.1	timeout	2024-10-07 14:26:31	2024-10-07 14:26:31	87	timeout
+116	162.168.1.9	timeout	2024-10-07 15:29:51	2024-10-07 15:29:51	\N	\N
+117	162.168.1.9	timeout	2024-10-07 15:30:02	2024-10-07 15:30:02	\N	\N
+118	162.168.1.9	timeout	2024-10-07 15:30:13	2024-10-07 15:30:13	\N	\N
+119	162.168.1.9	timeout	2024-10-07 15:30:24	2024-10-07 15:30:24	\N	\N
+120	162.168.1.9	timeout	2024-10-07 15:30:35	2024-10-07 15:30:35	\N	\N
+121	162.168.1.9	timeout	2024-10-07 15:30:45	2024-10-07 15:30:45	\N	\N
+122	162.168.1.9	timeout	2024-10-07 15:31:26	2024-10-07 15:31:26	\N	\N
+123	192.168.12.45	timeout	2024-10-07 15:32:16	2024-10-07 15:32:16	\N	\N
+124	192.168.1.123	timeout	2024-10-07 15:33:26	2024-10-07 15:33:26	\N	\N
+125	192.121.12.11	timeout	2024-10-07 17:52:31	2024-10-07 17:52:31	\N	\N
+\.
+
+
+--
+-- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.sessions (id, user_id, ip_address, user_agent, payload, last_activity) FROM stdin;
+98Ij8TnPlggQig8ieCyu3WD38VRnsDUfyc6QC8ix	\N	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36	YTozOntzOjY6Il90b2tlbiI7czo0MDoiZjdxTm5UV2tacEJSMGpqMUxDMkZ0RzdOZkphNDlTa1Rzc1Bjc1BmVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9yZXN1bHQtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=	1728300708
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: mrnpal
+--
+
+COPY public.users (id, name, email, email_verified_at, password, remember_token, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mrnpal
+--
+
+SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
+
+
+--
+-- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mrnpal
+--
+
+SELECT pg_catalog.setval('public.jobs_id_seq', 1, false);
+
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mrnpal
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 6, true);
+
+
+--
+-- Name: ping_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mrnpal
+--
+
+SELECT pg_catalog.setval('public.ping_logs_id_seq', 125, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mrnpal
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+
+
+--
+-- Name: cache_locks cache_locks_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.cache_locks
+    ADD CONSTRAINT cache_locks_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: cache cache_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.cache
+    ADD CONSTRAINT cache_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_uuid_unique UNIQUE (uuid);
+
+
+--
+-- Name: job_batches job_batches_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.job_batches
+    ADD CONSTRAINT job_batches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: jobs jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.jobs
+    ADD CONSTRAINT jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: password_reset_tokens password_reset_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.password_reset_tokens
+    ADD CONSTRAINT password_reset_tokens_pkey PRIMARY KEY (email);
+
+
+--
+-- Name: ping_logs ping_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.ping_logs
+    ADD CONSTRAINT ping_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: mrnpal
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: jobs_queue_index; Type: INDEX; Schema: public; Owner: mrnpal
+--
+
+CREATE INDEX jobs_queue_index ON public.jobs USING btree (queue);
+
+
+--
+-- Name: sessions_last_activity_index; Type: INDEX; Schema: public; Owner: mrnpal
+--
+
+CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_activity);
+
+
+--
+-- Name: sessions_user_id_index; Type: INDEX; Schema: public; Owner: mrnpal
+--
+
+CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
