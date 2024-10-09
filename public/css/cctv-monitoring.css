@@ -166,3 +166,46 @@ button {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+
+
+footer {
+    background-color: #f8f9fa; /* Warna latar belakang seperti footer GitHub */
+    color: #000000; /* Warna teks putih */
+    text-align: center; /* Teks di tengah */
+    padding: 20px 0; /* Padding di atas dan bawah */
+    font-size: 14px; /* Ukuran font lebih kecil */
+    position: fixed; /* Untuk layout yang stabil */
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #f9e400; /* Warna link */
+    text-decoration: none; /* Hilangkan garis bawah */
+}
+
+footer a:hover {
+    color: #ffffff; /* Warna link saat di-hover */
+    text-decoration: underline; /* Garis bawah saat di-hover */
+}
+
+footer p {
+    margin: 0; /* Menghilangkan margin bawaan */
+    font-family: 'Poppins', sans-serif; /* Gunakan font Poppins */
+}
+
+footer .footer-links {
+    margin-top: 10px; /* Jarak antara teks copyright dan link lainnya */
+}
+
+footer .footer-links a {
+    margin: 0 10px; /* Beri jarak horizontal antar link */
+    font-size: 14px; /* Ukuran font yang lebih kecil */
+}
+
+@media (max-width: 576px) {
+    footer {
+        font-size: 12px; /* Ukuran font lebih kecil di layar kecil */
+    }
+}

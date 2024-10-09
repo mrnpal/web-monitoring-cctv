@@ -142,6 +142,12 @@
         <button class="btn btn-primary" onclick="window.location.href='{{ route('result-page') }}'">Result Page</button>
     </div>
 
+    <footer>
+        <p><a href="#"></a> &copy; 2024 mrnpal </p>
+    </footer>
+    
+    
+
 
     <!-- Script untuk menangani alert berdasarkan status -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
