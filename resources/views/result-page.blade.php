@@ -92,12 +92,9 @@
     <div class="text-center mt-4 ">
         <button class="btn-back btn-primary" onclick="window.location.href='{{ route('monitoring-form') }}'">Kembali</button>
     </div>
-    <div>
-        <footer>
-            <p>CopyRight : <a href="#">Npal</a></p>
-        </footer>
-        
-    </div>
+    <footer>
+        <p><a href="#"></a> &copy; 2024 mrnpal </p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </body>

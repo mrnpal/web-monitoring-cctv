@@ -110,28 +110,43 @@ table td {
 }
 
 footer {
-    background-color: #343a40; /* Warna gelap untuk kontras */
-    color: #f8f9fa; /* Warna terang untuk teks */
-    text-align: center;
-    padding: 20px 0; /* Spasi vertikal di dalam footer */
-    font-size: 14px; /* Ukuran font yang lebih kecil */
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek modern */
-    position: relative; /* Membuat footer tetap di bawah */
+    background-color: white; /* Warna latar belakang seperti footer GitHub */
+    color: #000000; /* Warna teks putih */
+    text-align: center; /* Teks di tengah */
+    padding: 20px 0; /* Padding di atas dan bawah */
+    font-size: 14px; /* Ukuran font lebih kecil */
+    position: relative; /* Untuk layout yang stabil */
     bottom: 0;
     width: 100%;
-}
-
-footer p {
-    margin: 0; /* Menghapus margin default pada paragraf */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer a {
-    color: #F9E400; /* Warna untuk link jika ada */
-    text-decoration: none;
+    color: #f9e400; /* Warna link */
+    text-decoration: none; /* Hilangkan garis bawah */
 }
 
 footer a:hover {
-    color: #fff; /* Efek hover pada link */
-    text-decoration: underline;
+    color: #ffffff; /* Warna link saat di-hover */
+    text-decoration: underline; /* Garis bawah saat di-hover */
+}
+
+footer p {
+    margin: 0; /* Menghilangkan margin bawaan */
+    font-family: 'Poppins', sans-serif; /* Gunakan font Poppins */
+}
+
+footer .footer-links {
+    margin-top: 10px; /* Jarak antara teks copyright dan link lainnya */
+}
+
+footer .footer-links a {
+    margin: 0 10px; /* Beri jarak horizontal antar link */
+    font-size: 14px; /* Ukuran font yang lebih kecil */
+}
+
+@media (max-width: 576px) {
+    footer {
+        font-size: 12px; /* Ukuran font lebih kecil di layar kecil */
+    }
 }
