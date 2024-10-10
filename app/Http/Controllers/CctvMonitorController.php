@@ -8,7 +8,7 @@ use App\Services\PingService;
 
 class CctvMonitorController extends Controller
 {
-    // Method untuk menampilkan form monitoring IP dan port
+    
     public function showForm()
     {
         return view('monitoring-form'); 
@@ -20,28 +20,28 @@ class CctvMonitorController extends Controller
         $this->pingService = $pingService;
     }
 
-    // Fungsi untuk menangani ping IP Address
+    
     public function handlePingIp(Request $request)
     {
-        // Validasi input
+       
         $request->validate([
             'ip_address' => 'required|ip',
         ]);
 
         $ipAddress = $request->input('ip_address');
-        // Memanggi fungsi Ping 
+       
         $status = $this->pingIP($ipAddress);
 
-        // Jika timeout akan tersimpan ke database
+       
         if ($status === 'timeout') {
             PingLog::create([
                 'ip_address' => $ipAddress,
                 'status' => $status,
-                'port' => null, // Tidak ada port karena ini pengecekan IP
+                'port' => null, 
             ]);
         }
 
-        // Kembalikan hasil ke view
+        
         return view('monitoring-form', compact('ipAddress', 'status'));
     }
 

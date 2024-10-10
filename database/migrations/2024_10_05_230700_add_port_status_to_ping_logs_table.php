@@ -9,14 +9,14 @@ class AddPortStatusToPingLogsTable extends Migration
     public function up()
     {
         Schema::table('ping_logs', function (Blueprint $table) {
-            $table->string('port_status')->nullable(); // Menambahkan kolom port_status
+            $table->string('port_status')->nullable(); 
         });
     }
 
     public function down()
     {
         Schema::table('ping_logs', function (Blueprint $table) {
-            $table->dropColumn('port_status'); // Menghapus kolom port_status saat rollback
+            $table->dropColumn('port_status');
         });
     }
 }
