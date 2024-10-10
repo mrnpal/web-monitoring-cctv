@@ -121,19 +121,19 @@
                     <h3 class="text-center">Check Port</h3>
                     <form id="portForm" action="{{ route('handlePingPort') }}" method="POST">
                         @csrf
-                        <div class="form-grup">
+                        <div class="form-group">
                             <label for="port">Port:</label>
-                                <input type="text" name="port" id="port" class="form-control" placeholder="Masukkan Port" value="{{ old('port') }}">
-                                @error('port')
+                            <input type="text" name="port" id="port" class="form-control" placeholder="Masukkan Port" value="{{ old('port') }}">
+                            @error('port')
                                 <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                            @enderror
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-ping">Check Port</button>
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 
