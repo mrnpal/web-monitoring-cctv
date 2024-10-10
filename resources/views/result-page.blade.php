@@ -30,6 +30,7 @@
         
     </header>
     <div class="container mt-40">
+        <h1>Result</h1>
         
         <div class="row justify-content-center">
             <!-- Table for IP Address Logs -->
