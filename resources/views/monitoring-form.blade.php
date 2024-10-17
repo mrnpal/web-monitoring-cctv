@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCTV Monitoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo asset('css/cctv-monitoring.css')?>" type="text/css"> 
+    <link rel="stylesheet" href="<?php echo asset('/css/cctv-monitoring.css')?>" type="text/css"> 
+    {{-- @vite(['resources/css/cctv-monitoring.css', 'resources/js/app.js']) --}}
+
     
 </head>
 <body>
@@ -89,7 +91,7 @@
     <!-- Bagian logo di kiri atas -->
     <div class="container mt-3">
         <div class="logo-container">
-            <img src="{{ asset('assets/logo1.png') }}" alt="logo">
+            <img src="{{ asset('img/logo1.png') }}" alt="logo">
         </div>
     </div>
 

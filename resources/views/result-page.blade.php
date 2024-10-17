@@ -18,13 +18,15 @@
             height: auto; 
         }
     </style> --}}
+    {{-- @vite(['resources/css/result.css', 'resources/js/app.js']) --}}
+
 </head>
 <body>
     <header>
 
         <div class="container mt-3">
             <div class="logo-container">
-                <img src="{{ asset('assets/logo1.png') }}" alt="logo">
+                <img src="{{ asset('img/logo1.png') }}" alt="logo">
             </div>
         </div>
         
